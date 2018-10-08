@@ -1,468 +1,312 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	
-    <title>WebStorm</title>
-    <script src="lib/codemirror.js"></script>
-    <script src="mode/javascript/javascript.js"></script>
-    <script src="addon/hint/matchbrackets.js"></script>
-
-    <script src="addon/fold/foldcode.js"></script>
-    <script src="addon/fold/foldgutter.js"></script>
-    <script src="addon/fold/brace-fold.js"></script>
-    <script src="addon/fold/xml-fold.js"></script>
-    <script src="addon/fold/indent-fold.js"></script>
-    <script src="addon/fold/markdown-fold.js"></script>
-    <script src="addon/fold/comment-fold.js"></script>
-    <script src="addon/hint/show-hint.js"></script>
-    <script src="addon/hint/javascript-hint.js"></script>
-    <script src="addon/edit/matchbrackets.js"></script>
-    <script src="fold/foldcode.js"></script>
-    <script src="addon/edit/closebrackets.js"></script>
-    <script src="addon/comment/continuecomment.js"></script>
-    <script src="addon/comment/comment.js"></script>
-    <script src="addon/selection/active-line.js"></script>
-    
-    
-    <link rel="stylesheet" href="lib/codemirror.css">
-    <link rel="stylesheet" href="theme/material.css">
-    <link rel="stylesheet" href="theme/oceanic-next.css">
-    <link rel="stylesheet" href="addon/hint/show-hint.css">
-    <link rel="stylesheet" href="fold/foldgutter.css">
-
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
-<style>
- body {
-     background-color: #292C2F;
-}
-/* Shrinking the sidebar from 250px to 80px and center aligining its content*/
- #sidebar.active {
-     min-width: 80px;
-     max-width: 80px;
-     text-align: center;
-}
-/* Toggling the sidebar header content, hide the big heading [h3] and showing the small heading [strong] and vice versa*/
- #sidebar .sidebar-header strong {
-     display: none;
-}
- #sidebar.active .sidebar-header h3 {
-     display: none;
-}
- #sidebar.active .sidebar-header strong {
-     display: block;
-}
- #sidebar ul li a {
-     text-align: left;
-}
- #sidebar.active ul li a {
-     padding: 20px 10px;
-     text-align: center;
-     font-size: 0.85em;
-}
- #sidebar.active ul li a i {
-     margin-right: 0;
-     display: block;
-     font-size: 1.8em;
-     margin-bottom: 5px;
-}
-/* Same dropdown links padding*/
- #sidebar.active ul ul a {
-     padding: 10px !important;
-}
-/* Changing the arrow position to bottom center position, translateX(50%) works with right: 50% to accurately center the arrow */
- #sidebar.active .dropdown-toggle::after {
-     top: auto;
-     bottom: 10px;
-     right: 50%;
-     -webkit-transform: translateX(50%);
-     -ms-transform: translateX(50%);
-     transform: translateX(50%);
-}
- @media (max-width: 768px) {
-    /* 80px and its content aligned to centre. Pushing it off the screen with the negative left margin */
-     #sidebar.active {
-         min-width: 80px;
-         max-width: 80px;
-         text-align: center;
-         margin-left: -80px !important;
-    }
-    /* Reappearing the sidebar on toggle button click */
-     #sidebar {
-         margin-left: 0;
-    }
-    /* Toggling the sidebar header content, hide the big heading [h3] and showing the small heading [strong] and vice versa */
-     #sidebar .sidebar-header strong {
-         display: none;
-    }
-     #sidebar.active .sidebar-header h3 {
-         display: none;
-    }
-     #sidebar.active .sidebar-header strong {
-         display: block;
-    }
-    /* Downsize the navigation links font size */
-     #sidebar.active ul li a {
-         padding: 20px 10px;
-         font-size: 0.85em;
-    }
-     #sidebar.active ul li a i {
-         margin-right: 0;
-         display: block;
-         font-size: 1.8em;
-         margin-bottom: 5px;
-    }
-    /* Adjust the dropdown links padding*/
-     #sidebar.active ul ul a {
-         padding: 10px !important;
-    }
-    /* Changing the arrow position to bottom center position, translateX(50%) works with right: 50% to accurately center the arrow */
-     .dropdown-toggle::after {
-         top: auto;
-         bottom: 10px;
-         right: 50%;
-         -webkit-transform: translateX(50%);
-         -ms-transform: translateX(50%);
-         transform: translateX(50%);
-    }
-}
-.wrapper {
-    display: flex;
-    width: 100%;
-    align-items: stretch;
-}
-.wrapper {
-    display: flex;
-    align-items: stretch;
-}
-
-#sidebar {
-    min-width: 250px;
-    max-width: 250px;
-}
-
-#sidebar {
-    min-width: 250px;
-    max-width: 250px;
-    min-height: 100vh;
-}
-a[data-toggle="collapse"] {
-    position: relative;
-}
-
-.dropdown-toggle::after {
-    display: block;
-    position: absolute;
-    top: 50%;
-    right: 20px;
-    transform: translateY(-50%);
-}
-@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
-
-
-body {
-    font-family: 'Poppins', sans-serif;
-    background: #fafafa;
-}
-
-p {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.1em;
-    font-weight: 300;
-    line-height: 1.7em;
-    color: #999;
-}
-
-a, a:hover, a:focus {
-    color: inherit;
-    text-decoration: none;
-    transition: all 0.3s;
-}
-
-#sidebar {
-    /* don't forget to add all the previously mentioned styles here too */
-    background: #7386D5;
-    color: #fff;
-    transition: all 0.3s;
-}
-
-#sidebar .sidebar-header {
-    padding: 20px;
-    background: #6d7fcc;
-}
-
-#sidebar ul.components {
-    padding: 20px 0;
-    border-bottom: 1px solid #47748b;
-}
-
-#sidebar ul p {
-    color: #fff;
-    padding: 10px;
-}
-
-#sidebar ul li a {
-    padding: 10px;
-    font-size: 1.1em;
-    display: block;
-}
-#sidebar ul li a:hover {
-    color: #7386D5;
-    background: #fff;
-}
-
-#sidebar ul li.active > a, a[aria-expanded="true"] {
-    color: #fff;
-    background: #6d7fcc;
-}
-ul ul a {
-    font-size: 0.9em !important;
-    padding-left: 30px !important;
-    background: #6d7fcc;
-}
-    
-    .container {
-        padding: 0px;
-        margin : 0px;
-        height: 100%;
-        width : 100%;
-    }
-
-#accordion {
-    position: fixed;
-    bottom: 0;
-    /*width: 100%;*/
-    padding: 0%;
-    margin : 0px;
-    border : 0px;
-    border-width: 0;/*
-    border: 2px solid #212121;*/
-}
-
-.panel-default > .panel-heading{
-    background: #00B4FF;
-    background: #7386D5;
-}
-
-.panel-heading {
-    padding: 0px;
-    margin:0px;
-    border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
-}
-
-.panel-group .panel {
-    border-radius: 0;
-    border: 0px;
-}
-
-.panel-title a {
-    color: #FFFFFF;
-    text-align: center;
-    width:100%;
-    display: block;
-    padding: 10px 15px;
-    font-size: 12px;
-    font-family: Helvetica,Arial,sans-serif;
-    outline: none;
-}
-
-.panel-title a:hover, .panel-title a:focus, .panel-title a:active {
-    text-decoration: none;
-    outline: none;
-}
-.codeFooter
-{
-	height: 20px;
-	background-color :#212121;
-}
-    
-.navbar-nav > li > a {padding-top:8px !important; padding-bottom:8px !important;}
-.navbar {min-height:38px !important; margin-bottom: 0px;
-    border-radius: 0px;}
-.input-group {padding-top:0px !important; padding-bottom:0px !important;}
- 
-
-</style>
-</head>
-
-<body>
-<div class="wrapper">
-<!-- Sidebar  -->
-
-<nav id="sidebar">
-    <div class="sidebar-header">
-        <h3>WebStorm</h3>
-        <strong>WS</strong>
-    </div>
-
-    <ul class="list-unstyled components">
-        <li class="active">
-            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-home"></i>Home</a>
-            <ul class="collapse list-unstyled" id="homeSubmenu">
-                <li><a href="#">Home 1</a></li>
-                <li><a href="#">Home 2</a></li>
-                <li><a href="#">Home 3</a></li>
-            </ul>
-        </li>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>WebStorm</title>
+		<script src="lib/codemirror.js"></script>
+		<script src="mode/javascript/javascript.js"></script>
+		<script src="mode/clike/clike.js"></script>
+		<script src="addon/hint/matchbrackets.js"></script>
+		<script src="addon/fold/foldcode.js"></script>
+		<script src="addon/fold/foldgutter.js"></script>
+		<script src="addon/fold/brace-fold.js"></script>
+		<script src="addon/fold/xml-fold.js"></script>
+		<script src="addon/fold/indent-fold.js"></script>
+		<script src="addon/fold/markdown-fold.js"></script>
+		<script src="addon/fold/comment-fold.js"></script>
+		<script src="addon/hint/show-hint.js"></script>
+		<script src="addon/hint/javascript-hint.js"></script>
+		<script src="addon/edit/matchbrackets.js"></script>
+		<script src="fold/foldcode.js"></script>
+		<script src="addon/edit/closebrackets.js"></script>
+		<script src="addon/comment/continuecomment.js"></script>
+		<script src="addon/comment/comment.js"></script>
+		<script src="addon/selection/active-line.js"></script>
+		<link rel="stylesheet" href="lib/codemirror.css">
+		<link rel="stylesheet" href="theme/material.css">
+		<link rel="stylesheet" href="theme/oceanic-next.css">
+		<link rel="stylesheet" href="addon/hint/show-hint.css">
+		<link rel="stylesheet" href="fold/foldgutter.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.0/raphael-min.js"></script>
+		<script src="http://flowchart.js.org/flowchart-latest.js"></script>
+		<link rel="stylesheet" href="jquery.tabSlideOut.css">
+		<script src="jquery.tabSlideOut.js"></script>
+		<link rel="stylesheet" href="CSS/orion_default.css">
+		<!-- ScrollBar library -->
+		<link rel="stylesheet" href="CSS/jquery.mCustomScrollbar.css">
+		<!-- ScrollBAr Javascript -->
+		<script src="JS/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script>
         
-        <li>
-            <a href="#" id="sidebarCollapse"><i class="fas fa-briefcase"></i>Projects</a>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css">
+        
+        <script src="JS/dependency-tree.js"></script>
+	</head>
+	<body>
+		<div class="wrapper">
+			<!-- Sidebar  -->
+			<nav id="sidebar" class="active">
+				<div class="sidebar-header">
+					<h3>WebStorm</h3>
+					<strong>WS</strong>
+				</div>
+				<ul class="list-unstyled components">
+					<li class="active">
+						<a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-home"></i>Home</a>
+						<ul class="collapse list-unstyled" id="homeSubmenu">
+							<li><a href="#">Home 1</a></li>
+							<li><a href="#">Home 2</a></li>
+							<li><a href="#">Home 3</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#" id="sidebarCollapse"><i class="fas fa-briefcase"></i>Projects</a>
+						<a href="#ModuleSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-copy"></i>Modules</a>
+						<ul class="collapse list-unstyled" id="ModuleSubmenu">
+							<li><a href="#">Module 1</a></li>
+							<li><a href="#">Module 2</a></li>
+							<li><a href="#">Module 3</a></li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+			<!-- Page Content  -->
+			<div class="container">
+				<nav class="navbar navbar-inverse">
+					<div class="container-fluid">
+						<!--
+							<div class="navbar-header">
+							    <a class="navbar-brand" href="#">WebSiteName</a>
+							</div>
+							-->
+						<ul class="nav navbar-nav">
+							<li><a href="#">SAVE</a></li>
+							<li><a href="#">SAVE LOCAL</a></li>
+							<li onclick="RunFunction()"><a href="#">RUN</a></li>
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+							<li><a href="#"><span class="glyphicon glyphicon-user"></span> MXIV</a></li>
+							<li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+						</ul>
+					</div>
+				</nav>
+				<div class="row-fluid no-container" style="min-height:300px;" id="main-row">
+					<div class="col-sm-8 nopad" id="codeeditorPanel">
+						<div id="codeeditor"></div>
+						<div class="codeFooter">
+							<button data-toggle="modal" data-target="#exampleModalLong">Flow Chart</button>
+							<button>Java</button>
+						</div>
+					</div>
+					<div class="col-sm-4 nopad" id="right-sidebar">
+						<div class="container">
+							<div class="col-xs-1 nopad">
+								<!-- required for floating -->
+								<!-- Nav tabs -->
+								<ul class="nav nav-tabs tabs-left vertical-text">
+									<li class="active" onclick="trial()"><a href="#home-v" data-toggle="tab">HOME</a></li>
+									<li><a href="#profile-v" data-toggle="tab">FLOW CHART</a></li>
+									<li><a href="#messages-v" data-toggle="tab">MESSAGES</a></li>
+									<li><a href="#settings-v" data-toggle="tab" id="setting-button">SETTINGS</a></li>
+								</ul>
+							</div>
+							<div class="col-xs-11 nopad" id="rightContent">
+								<!-- Tab panes -->
+								<div class="tab-content">
+									<div class="tab-pane active" id="home-v">
+										<div class="container" id="home-content">
+											Home Tab.
+											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus, adipisci, quibusdam, minima ratione voluptas quidem porro sint nobis odio cupiditate alias nisi. Magnam et fugiat labore eum at adipisci ex. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus, adipisci, quibusdam, minima ratione voluptas quidem porro sint nobis odio cupiditate alias nisi. Magnam et fugiat labore eum at adipisci ex. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus, adipisci, quibusdam, minima ratione voluptas quidem porro sint nobis odio cupiditate alias nisi. Magnam et fugiat labore eum at adipisci ex.</p>
+										</div>
+									</div>
+									<div class="tab-pane" id="profile-v">
+										<div class="container mCustomScrollbar" data-mcs-theme="dark" id="profile-content">
+											Profile Tab.
+											<form class="form-inline">
+												<label for="exampleInputEmail1">Module Name : </label>
+												<input type="text" class="form-control orion_dark" id="moduleName" placeholder="sort">
+											</form>
+											<div class="form-group">
+												<label for="codeTag">Code Tags</label>
+												<textarea class="form-control orion_dark" id="codeTag" spellcheck="false" rows="1"></textarea>
+											</div>
+											<div class="form-group">
+												<label for="codeDescription">Description</label>
+												<textarea class="form-control orion_dark" id="codeDescription" spellcheck="false" rows="2"></textarea>
+											</div>
+											<div class="form-group">
+												<label for="codeHeaders">Code Headers</label>
+												<textarea class="form-control orion_dark" id="codeHeaders" spellcheck="false" rows="2"></textarea>
+											</div>
+											<div class="form-group">
+												<label for="codeFunction">Code Function</label>
+												<textarea class="form-control orion_dark" id="codeFunction" spellcheck="false" rows="5"></textarea>
+											</div>
+                                            
+											<button type="button" class="btn btn-secondary btn-lg btn-block orion_button" onclick="addModule();">Register Module</button>
+											<br>
+                                            
+											<button type="button" class="btn btn-half btn-secondary btn-lg orion_button">
+											Display JSON
+											</button>
+                                            
+                                            <button type="button" class="btn btn-half btn-secondary btn-lg orion_button" onclick="saveJSONLocally();">
+											Save Module Locally
+                                            </button>
+                                            <br><br>
+										</div>
+									</div>
+									<div class="tab-pane" id="messages-v">
+										<iframe id="if1" width="100%" height="540px" style="visibility:visible" src="https://www.jdoodle.com/online-java-compiler"></iframe>
+									</div>
+									<div class="tab-pane" id="settings-v">
+										<div class="container" id="settings-content">
+											Settings Tab.
+											<p>
+												Connect module database with Firebase.<br> Fix Terminal Body.
+											</p>
+                                            <style type="text/css">
+                                                #mynetwork {
+                                                    width: 600px;
+                                                    height: 400px;
+                                                    border: 0px solid lightgray;
+                                                }
+                                            </style>
 
-            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-copy"></i>Pages</a>
-                <ul class="collapse list-unstyled" id="pageSubmenu">
-                    <li><a href="#">Page 1</a></li>
-                    <li><a href="#">Page 2</a></li>
-                    <li><a href="#">Page 3</a></li>
-                </ul>
-        </li>
-    </ul>
-</nav>
+                                            <div id="mynetwork"></div>
+                                            <script type="text/javascript">
+                                                // create an array with nodes
+                                                var nodes = new vis.DataSet([
+                                                    {id: 1, label: 'Node 1'},
+                                                    {id: 2, label: 'Node 2'},
+                                                    {id: 3, label: 'Node 3'},
+                                                    {id: 4, label: 'Node 4'},
+                                                    {id: 5, label: 'Node 5'}
+                                                ]);
 
-<!-- Page Content  -->
-<div class="container">
+                                                // create an array with edges
+                                                var edges = new vis.DataSet([
+                                                    {from: 1, to: 3},
+                                                    {from: 1, to: 2},
+                                                    {from: 2, to: 4},
+                                                    {from: 2, to: 5}
+                                                ]);
 
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <!--
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">WebSiteName</a>
-        </div>
-        -->
-        <ul class="nav navbar-nav">
-            <li><a href="#">Save</a></li>
-            <li onclick="RunFunction()"><a href="#">Run</a></li>
-        </ul>
-		<form class="navbar-form navbar-left" action="">
-			<div class="input-group">
-				<input type="text" class="form-control input-sm" placeholder="File Name" name="FileName">
+                                                // create a network
+                                                var container = document.getElementById('mynetwork');
+
+                                                // provide the data in the vis format
+                                                var data = {
+                                                    nodes: nodes,
+                                                    edges: edges
+                                                };
+                                                var options = {};
+
+                                                // initialize your network!
+                                                var network = new vis.Network(container, data, options);
+                                            </script>
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="panel-group container-fluid" id="accordion">
+						<div class="panel panel-default">
+							<div class="panel-heading" onclick="changeSize()">
+								<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Terminal</a></h4>
+							</div>
+							<div id="collapseOne" class="panel-collapse collapse">
+								<div class="" id="terminal-body">
+									<div class="mCustomScrollbar Console-body" data-mcs-theme="dark" id="Console-scroll">
+										<h1>> welcome to WebStorm.</h1>
+										<h1>> type 'help' to see command list.</h1>
+									</div>
+									<div class="Console-footer">
+										<input type="text" id="Console-input" placeholder="$ type command">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+                <!--
+				<div id="right">
+					<a id="right-handle" class="handle ui-slideouttab-handle ui-slideouttab-handle-rounded">&nbsp;IDEONE<i class="fa fa-icon fa-bank"></i></a>
+					<iframe id="if1" width="100%" height="80%" style="visibility:visible" src="https://www.jdoodle.com/online-java-compiler"></iframe>
+					<input type="checkbox" id="keepTabOpen" name="keepTabOpen" value="keepTabOpen">
+					<label for="keepTabOpen">Keep tab open</label>
+					<br>
+					<div class="[ form-group ]">
+						<input type="checkbox" name="fancy-checkbox-primary" id="fancy-checkbox-primary" autocomplete="off" />
+						<div class="[ btn-group ]">
+							<label for="fancy-checkbox-primary" class="[ btn btn-primary ]">
+							<span class="[ glyphicon glyphicon-ok ]"></span>
+							<span> </span>
+							</label>
+							<label for="fancy-checkbox-primary" class="[ btn btn-default active ]">
+							Keep tab open
+							</label>
+						</div>
+					</div>
+				</div>
+				<div id="right2">
+					<a id="right-handle" class="handle ui-slideouttab-handle ui-slideouttab-handle-rounded">&nbsp;NINJA<i class="fa fa-icon fa-bank"></i></a>
+				</div>
+                -->
+				<!-- Modal -->
+				<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLongTitle">Flow Chart</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<div><textarea id="code" style="width: 100%;" rows="11">
+									st=>start: Start|past:>http://www.google.com[blank]
+									e=>end: End:>http://www.google.com
+									op1=>operation: My Operation|past
+									op2=>operation: Stuff|current
+									sub1=>subroutine: My Subroutine|invalid
+									cond=>condition: Yes
+									or No?|approved:>http://www.google.com
+									c2=>condition: Good idea|rejected
+									io=>inputoutput: catch something...|request
+									para=>parallel: parallel tasks
+									st->op1(right)->cond
+									cond(yes, right)->c2
+									cond(no)->para
+									c2(true)->io->e
+									c2(false)->e
+									para(path1, bottom)->sub1(left)->op1
+									para(path2, right)->op2->e
+									st@>op1({"stroke":"Red"})@>cond({"stroke":"Red","stroke-width":6,"arrow-end":"classic-wide-long"})@>c2({"stroke":"Red"})@>op2({"stroke":"Red"})@>e({"stroke":"Red"})
+									</textarea>
+								</div>
+								<div><button id="run" type="button">Run</button></div>
+								<div id="canvas"></div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								<button type="button" class="btn btn-primary">Save changes</button>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-		</form>
-        <ul class="nav navbar-nav navbar-right">
-            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-        </ul>
-    </div>
-</nav>
-
-		<div id="codeeditor"></div>
-		<div class="codeFooter"></div>
-	
-    <div class="panel-group container-fluid" id="accordion">
-        <div class="panel panel-default">
-            <div class="panel-heading" onclick="changeSize()">
-                <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Terminal</a></h4>
-            </div>
-            <div id="collapseOne" class="panel-collapse collapse">
-                <div class="panel-body container-fluid">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus, adipisci, quibusdam, minima ratione voluptas quidem porro sint nobis odio cupiditate alias nisi. Magnam et fugiat labore eum at adipisci ex.
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus, adipisci, quibusdam, minima ratione voluptas quidem porro sint nobis odio cupiditate alias nisi. Magnam et fugiat labore eum at adipisci ex.
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus, adipisci, quibusdam, minima ratione voluptas quidem porro sint nobis odio cupiditate alias nisi. Magnam et fugiat labore eum at adipisci ex.
-                </div>
-            </div>
-        </div>
-    </div>	
-</div>
-
-</div>
-    <script>
-	$(document).ready(function () {
-
-    $('#sidebarCollapse').on('click', function () {
-        $('#sidebar').toggleClass('active');
-    });
-
-});
-$('#collapseOne').on('show.bs.collapse', function () {    
-    $('.panel-heading').animate({
-        backgroundColor: "#515151"
-    }, 500);   
-})
-
-$('#collapseOne').on('hide.bs.collapse', function () {    
-    $('.panel-heading').animate({
-        backgroundColor: "#00B4FF"
-    }, 500);   
-})
-    var editor = CodeMirror(document.getElementById("codeeditor"), {
-	value: "import.java.util.*;\n",
-	mode: "javascript",
-	theme: "oceanic-next",
-	tabSize: 4,
-    indentUnit: 4,
-    indentWithTabs: true,
-	lineNumbers: true,
-	firstLineNumber: 0,
-    matchBrackets: true,
-    autoCloseBrackets: true,
-    foldGutter: true,
-    foldCode: true,
-    styleActiveLine: true,
-    styleActiveSelected: true,
-    gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
-    extraKeys: {"Ctrl-Space": "autocomplete"}
-});
-
-        editor.setSize(null,"540px");
-function RunFunction()
-{
-	console.log(editor.getValue());
-	var clientId = "2b08f04240d3e4a24c0dcd91568cbeae";
-	var clientSecret = "c86905ab6b330d46eaaf77fad8da0a671c96f8e16f1dc739949ae892acdbfa7";
-	var script = editor.getValue();
-	var stdin = "";
-	var language = "java";
-	var versionIndex = 0;
-	var datad = "{\"clientId\": \"" + clientId + "\",\"clientSecret\":\"" + clientSecret + "\",\"script\":\"" + script +"\",\"language\":\"" + language + "\",\"versionIndex\":\"" + versionIndex + "\"} ";
-    var settings = 
-    {
-        "async": true,
-        "crossDomain": true,
-        "url": "https://api.jdoodle.com/v1/execute",
-        "method": "POST",
-        "headers": 
-        {
-            "content-type": "application/json"
-        },
-        "processData": false,
-        "data": datad
-    }
-
-
-    $.ajax(settings).done(function (response) 
-    {   console.log(response);
-    });
-}
-        
-$('#collapseOne').on("shown.bs.collapse", function(){
- //trigger content change
-    console.log("hey");
- //this code will be triggered when the collapse transition is completed 
- //that is your myCollapsible element will have 'in' in your class
-});
-
-var changeSizeIndex = 0;
-function changeSize()
-{
-    if(changeSizeIndex++ % 2 == 0)
-    {
-        console.log("expanding");
-        editor.setSize(null,"430px");
-    }
-    else
-    {
-        console.log("collapsed");
-        editor.setSize(null,"540px");
-    }
-    
-}
-    </script>
-</body>
-
+		</div>
+		<script src="JS/orion_default.js"></script>
+		<script src="JS/orion_nlp_module.js"></script>
+	</body>
 </html>
+
